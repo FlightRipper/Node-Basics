@@ -44,6 +44,9 @@ function onDataReceived(text) {
   else if(text === 'help\n'){
     help();
   }
+  else if(text === 'list\n'){
+    listTasks();
+  }
   else{
     unknownCommand(text);
   }
@@ -74,6 +77,20 @@ function unknownCommand(c){
 // function hello takes the input as an argument and returns it with !
 function hello(input){
   console.log(input + "!");
+}
+
+// Function to list all tasks
+function listTasks(){
+  // Create an array to store tasks
+  const tasks = [
+    "Task 1: Buy kousa",
+    "Task 2: drill kousa",
+    "Task 3: fill kousa",
+  ];
+  console.log("Tasks:");
+  tasks.forEach((task, index) => {
+    console.log(`${index + 1}. ${task}`);
+  });
 }
 
 
