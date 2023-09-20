@@ -79,21 +79,24 @@ function hello(input){
   console.log(input + "!");
 }
 
+const tasks = [
+  "Task 1: Buy kousa",
+  "Task 2: drill kousa",
+  "Task 3: fill kousa",
+];
+
 // Function to list all tasks
 function listTasks(){
   // Create an array to store tasks
-  const tasks = [
-    "Task 1: Buy kousa",
-    "Task 2: drill kousa",
-    "Task 3: fill kousa",
-  ];
   console.log("Tasks:");
   tasks.forEach((task, index) => {
     console.log(`${index + 1}. ${task}`);
   });
 }
 
-
+function add(task){
+  tasks.push(task);
+}
 /**
  * Exits the application
  *
