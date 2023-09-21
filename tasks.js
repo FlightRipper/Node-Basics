@@ -120,7 +120,7 @@ function remove(task){
 
 function edit(input) {
   if (input.length <= 4) {
-    return console.log("Error: Invalid input");
+    return console.log(" invalid input");
   }
   const args = input.split(' ');
   if (args.length === 2) {
@@ -133,11 +133,11 @@ function edit(input) {
     if (index >= 0 && index < tasks.length) {
       tasks[index] = newText;
     } else {
-      console.log("Error: Invalid task index.");
+      console.log("Invalid index");
     }
   } 
   else {
-    console.log("Error: Invalid command format");
+    console.log("Invalid format");
   }
 }
 
