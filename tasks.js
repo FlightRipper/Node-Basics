@@ -123,7 +123,7 @@ function quit(){
 }
 
 function help(){
-  console.log("hello : to Greet, quit/exit : to close the application")
+  console.log("hello : to Greet, quit/exit : to close the application, add : add a new task to the list, remove : remove a task from the list(make sure to write the index)")
 }
 
 // The following line starts the application
