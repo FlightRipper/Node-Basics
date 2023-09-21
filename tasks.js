@@ -53,6 +53,9 @@ function onDataReceived(text) {
   else if(input === 'remove'){
     remove(text.replace('\n',""));
   }
+  else if(input === 'edit'){
+    edit(text.replace('\n',""));
+  }
   else{
     unknownCommand(text);
   }
@@ -113,6 +116,29 @@ function remove(task){
   }
   tasks.splice(index-1 , 1);
   listTasks();
+}
+
+function edit(input) {
+  if (input.length <= 4) {
+    return console.log("Error: Invalid input");
+  }
+  const args = input.split(' ');
+  if (args.length === 2) {
+    const newText = args[1];
+    tasks[tasks.length - 1] = newText;
+  }
+  else if (args.length === 3 && !isNaN(args[1])) {
+    const index = parseInt(args[1]) - 1;
+    const newText = args[2];
+    if (index >= 0 && index < tasks.length) {
+      tasks[index] = newText;
+    } else {
+      console.log("Error: Invalid task index.");
+    }
+  } 
+  else {
+    console.log("Error: Invalid command format");
+  }
 }
 
 /**
