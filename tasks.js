@@ -33,7 +33,9 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+
 function onDataReceived(text) {
+  let result = text.split(" ");
   const input = text.split(" ")[0].trim();
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
@@ -55,6 +57,12 @@ function onDataReceived(text) {
   }
   else if(input === 'edit'){
     edit(text.replace('\n',""));
+  }
+  else if (text.startsWith('check ')){
+    check(result)
+  }
+  else if (text.startsWith('uncheck ')){
+   uncheck(result)
   }
   else{
     unknownCommand(text);
@@ -88,34 +96,45 @@ function hello(input){
   console.log(input + "!");
 }
 
-const tasks = [
-  "Task 1: Buy kousa",
-  "Task 2: drill kousa",
-  "Task 3: fill kousa",
+let tasks = [
+  {
+   taskname: "Buy kousa",
+   done : false,
+  },
+  {
+   taskname: "drill kousa",
+  done : false,
+  },
+  {
+    taskname: "fill kousa",
+    done : false,
+  }
 ];
 
 // Function to list all tasks
 function listTasks(){
-  // Create an array to store tasks
-  console.log("Tasks:");
-  tasks.forEach((task, index) => {
-    console.log(`${index + 1}. ${task}`);
-  });
+  for (i=0;i<tasks.length;i++){
+    console.log(`${i+1} - [${tasks[i].done? "✓":" "}] ${tasks[i].taskname}`);
+  }
 }
 
 // function to  add a task to the list
-function add(task){
-  tasks.push(task);
+
+function add(result) {
+  tasks.push({taskname:result.slice(1),done:false}); 
+}
+
+function check(result){
+  tasks[parseInt(result[1]-1)].done=true
+}
+
+function uncheck(result){
+  tasks[parseInt(result[1]-1)].done=false
 }
 
 //function to remove a task from the list
-function remove(task){
-  index = task.slice(7,task.length);
-  if (index > tasks.length) {
-    return console.log("Task not found");
-  }
-  tasks.splice(index-1 , 1);
-  listTasks();
+function remove(result) {
+  tasks.splice(parseInt(result[1]) - 1, 1);
 }
 
 function edit(input) {
@@ -140,6 +159,8 @@ function edit(input) {
     console.log("Invalid format");
   }
 }
+
+
 
 /**
  * Exits the application
