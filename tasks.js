@@ -108,6 +108,9 @@ function add(task){
 //function to remove a task from the list
 function remove(task){
   index = task.slice(7,task.length);
+  if (index > tasks.length) {
+    return console.log("Task not found");
+  }
   tasks.splice(index-1 , 1);
   listTasks();
 }
