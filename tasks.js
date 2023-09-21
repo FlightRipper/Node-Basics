@@ -47,6 +47,12 @@ function onDataReceived(text) {
   else if(text === 'list\n'){
     listTasks();
   }
+  else if(input === 'add'){
+    add(text.replace('\n',""));
+  }
+  else if(input === 'remove'){
+    remove(text.replace('\n',""));
+  }
   else{
     unknownCommand(text);
   }
@@ -94,9 +100,18 @@ function listTasks(){
   });
 }
 
+// function to  add a task to the list
 function add(task){
   tasks.push(task);
 }
+
+//function to remove a task from the list
+function remove(task){
+  index = task.slice(7,task.length);
+  tasks.splice(index-1 , 1);
+  listTasks();
+}
+
 /**
  * Exits the application
  *
